@@ -10,12 +10,6 @@
 </head>
 
 <body>
-    <div class="tela-de-entrada">
-        <img src="imagens/logo 1.png">
-        <input data-test="input-name" data-identifier="enter-name" type="text" name=" Digite o seu nome"
-            placeholder="Digite o seu nome" required>
-        <button data-test="send-name" data-identifier="start">Entrar</button>
-    </div>
     <header>
         <img src="imagens/logo 1.png">
         <ion-icon name="people-outline"></ion-icon>
@@ -25,7 +19,8 @@
     </main>
     <footer>
         <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline"></ion-icon>
+        <button onclick="enviarMensagem()" data-test="send-message"><ion-icon
+                name="paper-plane-outline"></ion-icon></button>
     </footer>
 
 </body>

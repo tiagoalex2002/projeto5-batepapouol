@@ -1,13 +1,16 @@
-const entrada = document.querySelector(".tela-de-entrada")
-let nome = entrada.querySelector("input").value;
+
+let mensagens = [];
+let nome;
+login();
 
 function login() {
+    nome = prompt("Qual o seu nome?");
     const obj = {
         name: nome
     };
 
     const promiseNome = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', obj);
-    promiseNome.then(sucesso);
+    promiseNome.then(suc);
     promiseNome.catch(error);
 
 }
@@ -44,10 +47,10 @@ function error(resposta) {
         alert("Erro de Conexão");
         login();
     }
-    window.location.reload;
+    window.location.reload();
 }
 
-function succeso(resposta) {
+function suc(resposta) {
     const status = resposta.status;
     if (status == 200) {
         conexao(obj);
@@ -78,31 +81,49 @@ function exibirMensagens() {
     const listaMensagens = document.querySelector('.mensagens');
     listaMensagens.innerHTML = '';
     for (let i = 0; i < mensagens.length; i++) {
-        if (mensagens[cont].type === 'message') {
-            let template = `
-        <li class="mensagemNormal" data-test="message">
-            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text}
-        </li>`;
+        if (mensagens[i].type === "message") {
+            let template = `<li class="mensagemNormal" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text} </li>`;
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
-        else if (mensagens[cont].type === 'private_message' && mensagens[cont].to === usuarioInicial) {
-            let template = `
-        <li class="mensagemPrivada" data-test="message">
-            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbspreservadamente&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text}
-        </li>`;
+        else if (mensagens[i].type === "status") {
+            let template = `<li class="tipoStatus" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsp${mensagens[cont].text} </li>`;
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
-        else if (mensagens[cont].type === 'status') {
-            let template = `
-        <li class="mensagemStatus" data-test="message">
-            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsp${mensagens[cont].text}
-        </li>`;
+        else if (mensagens[i].type === "private_message") {
+            let template = `<li class="tipoMensagemPrivada" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbspreservadamente&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text}</li>`;
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
     }
+}
+
+function enviarMensagens() {
+    let mensagem = document.querySelector("input");
+    let obj2 = {
+        from: nome,
+        to: "Todos",
+        text: mensagem.value,
+        type: "message",
+    }
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", obj2);
+    promise.then(mensagemEnviada);
+    promise.catch(mensagemNaoEnviada);
+    mensagem.value = "";
+}
+
+function mensagemEnviada(resposta) {
+    console.log("Mensagem Enviada com sucesso")
+    obtermensagens();
+}
+
+function mensagemNaoEnviada(resposta) {
+    console.log("Houve falha no envio")
+    window.location.reload();
 }
 
 
