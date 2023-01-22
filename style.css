@@ -47,26 +47,39 @@ footer input {
     border: none;
 }
 
-.mensagens {
+.mensagemNormal {
+    min-height: 40px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 4px;
+    overflow: scroll;
+}
+
+.mensagemStatus {
+    min-height: 40px;
+    background: #DCDCDC;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
     width: 100%;
     margin-bottom: 4px;
-    border-radius: 2px;
-    align-items: center;
-    font-weight: 400;
-    padding: 12px 9px;
-    word-break: break-word;
+    overflow: scroll
 }
 
-.mensagens .status {
-    background: #DCDCDC;
-}
 
-.mensagens .padrao {
-    background: #FFFFFF;
-}
-
-.mensagens .private_message {
+.mensagemPrivada {
+    min-height: 40px;
     background: #FFDEDE;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 4px;
+    overflow: scroll
 }
 
 .tela-de-entrada {

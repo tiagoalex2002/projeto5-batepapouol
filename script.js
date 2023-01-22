@@ -1,7 +1,7 @@
 const entrada = document.querySelector(".tela-de-entrada")
+let nome = entrada.querySelector("input").value;
 
 function login() {
-    nome = entrada.querySelector("input").value;
     const obj = {
         name: nome
     };
@@ -38,9 +38,11 @@ function error(resposta) {
     const statusError = resposta.response.status;
     if (statusError == 400) {
         alert("Nome de usuário em uso. Por favor, escolher outro");
+        login();
     }
     else {
         alert("Erro de Conexão");
+        login();
     }
     window.location.reload;
 }
@@ -52,3 +54,55 @@ function succeso(resposta) {
         obtermensagens();
     }
 }
+
+function obtermensagens() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    promise.then(chegada);
+    promise.catch(falha);
+    setTimeout((obtermensagens), 3000);
+
+}
+
+function chegada(resposta) {
+    console.log('mensagens chegaram');
+    console.log(resposta);
+    mensagens = resposta.data;
+    exibirMensagens();
+}
+function falha(resposta) {
+    console.log('deu ruim');
+    console.log(resposta);
+}
+
+function exibirMensagens() {
+    const listaMensagens = document.querySelector('.mensagens');
+    listaMensagens.innerHTML = '';
+    for (let i = 0; i < mensagens.length; i++) {
+        if (mensagens[cont].type === 'message') {
+            let template = `
+        <li class="mensagemNormal" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text}
+        </li>`;
+            listaMensagens.innerHTML = listaMensagens.innerHTML + template;
+            listaMensagens.lastChild.scrollIntoView();
+        }
+        else if (mensagens[cont].type === 'private_message' && mensagens[cont].to === usuarioInicial) {
+            let template = `
+        <li class="mensagemPrivada" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbspreservadamente&nbsppara&nbsp<span style="font-weight:700">${mensagens[cont].to}</span>: ${mensagens[cont].text}
+        </li>`;
+            listaMensagens.innerHTML = listaMensagens.innerHTML + template;
+            listaMensagens.lastChild.scrollIntoView();
+        }
+        else if (mensagens[cont].type === 'status') {
+            let template = `
+        <li class="mensagemStatus" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[cont].time})</span>&nbsp<span style="font-weight:700">${mensagens[cont].from}</span>&nbsp${mensagens[cont].text}
+        </li>`;
+            listaMensagens.innerHTML = listaMensagens.innerHTML + template;
+            listaMensagens.lastChild.scrollIntoView();
+        }
+    }
+}
+
+
