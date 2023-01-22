@@ -84,15 +84,15 @@ function exibirMensagens() {
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
-        else if (mensagens[i].type === "status") {
-            let template = `<li class="mensagemStatus" data-test="message">
-            <span style="color:#AAAAAA">(${mensagens[i].time})</span>&nbsp<span style="font-weight:700">${mensagens[i].from}</span>&nbsp${mensagens[i].text} </li>`;
+        else if (mensagens[i].type === "private_message" && mensagens[i].to === nome) {
+            let template = `<li class="mensagemPrivada" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[i].time})</span>&nbsp<span style="font-weight:700">${mensagens[i].from}</span>&nbspreservadamente&nbsppara&nbsp<span style="font-weight:700">${mensagens[i].to}</span>: ${mensagens[i].text}</li>`;
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
-        else if (mensagens[i].type === "private_message") {
-            let template = `<li class="mensagemPrivada" data-test="message">
-            <span style="color:#AAAAAA">(${mensagens[i].time})</span>&nbsp<span style="font-weight:700">${mensagens[i].from}</span>&nbspreservadamente&nbsppara&nbsp<span style="font-weight:700">${mensagens[i].to}</span>: ${mensagens[i].text}</li>`;
+        else if (mensagens[i].type === "status") {
+            let template = `<li class="mensagemStatus" data-test="message">
+            <span style="color:#AAAAAA">(${mensagens[i].time})</span>&nbsp<span style="font-weight:700">${mensagens[i].from}</span>&nbsp${mensagens[i].text} </li>`;
             listaMensagens.innerHTML = listaMensagens.innerHTML + template;
             listaMensagens.lastChild.scrollIntoView();
         }
