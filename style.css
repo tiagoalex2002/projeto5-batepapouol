@@ -46,3 +46,68 @@ footer input {
     height: 40px;
     border: none;
 }
+
+.mensagens {
+    width: 100%;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    align-items: center;
+    font-weight: 400;
+    padding: 12px 9px;
+    word-break: break-word;
+}
+
+.mensagens .status {
+    background: #DCDCDC;
+}
+
+.mensagens .padrao {
+    background: #FFFFFF;
+}
+
+.mensagens .private_message {
+    background: #FFDEDE;
+}
+
+.tela-de-entrada {
+    background: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.tela-de-entrada img {
+    width: 130px;
+    height: 92px;
+    margin-top: 25%;
+}
+
+.tela-de-entrada input {
+    width: 261px;
+    height: 54px;
+    margin-left: 57px;
+    margin-top: 258px;
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #AEAEAE;
+}
+
+.tela-de-entrada button {
+    width: 109px;
+    height: 45px;
+    margin-top: 3%;
+    background: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #696969;
+}

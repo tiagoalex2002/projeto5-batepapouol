@@ -10,18 +10,26 @@
 </head>
 
 <body>
+    <div class="tela-de-entrada">
+        <img src="imagens/logo 1.png">
+        <input data-test="input-name" data-identifier="enter-name" type="text" name=" Digite o seu nome"
+            placeholder="Digite o seu nome" required>
+        <button data-test="send-name" data-identifier="start">Entrar</button>
+    </div>
     <header>
         <img src="imagens/logo 1.png">
         <ion-icon name="people-outline"></ion-icon>
     </header>
-    <main></main>
+    <main>
+        <div class="mensagens"></div>
+    </main>
     <footer>
         <input type="text" placeholder="Escreva aqui...">
         <ion-icon name="paper-plane-outline"></ion-icon>
     </footer>
 
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script src="script.js"></script>
 
