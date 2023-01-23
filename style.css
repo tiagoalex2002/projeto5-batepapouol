@@ -82,23 +82,25 @@ footer input {
     overflow: scroll
 }
 
-.tela-de-entrada {
+.teladeentrada {
     background: #FFFFFF;
     width: 100%;
     height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
-.tela-de-entrada img {
+.teladeentrada img {
     width: 130px;
     height: 92px;
     margin-top: 25%;
 }
 
-.tela-de-entrada input {
+.teladeentrada input {
     width: 261px;
     height: 54px;
     margin-left: 57px;
@@ -112,7 +114,7 @@ footer input {
     color: #AEAEAE;
 }
 
-.tela-de-entrada button {
+.teladeentrada button {
     width: 109px;
     height: 45px;
     margin-top: 3%;
@@ -123,4 +125,12 @@ footer input {
     font-size: 18px;
     line-height: 25px;
     color: #696969;
+}
+
+.teladeentrada:focus {
+    outline: none;
+}
+
+.hiddenLoggin {
+    display: none;
 }
